@@ -31,14 +31,18 @@ Package.onUse(function(api) {
 	api.addFiles([
 		'derived-prngs/uniform.js',
 		'derived-prngs/binomial.js',
-		'derived-prngs/discrete.js',
+		'derived-prngs/categorical.js',
+		'derived-prngs/multinomial.js',
 		'derived-prngs/etc.js',
 		'derived-prngs/exponential.js',
 		'derived-prngs/poisson.js',
 		'derived-prngs/normal.js',
 		'derived-prngs/gamma.js',
 		'derived-prngs/beta.js',
+		'derived-prngs/beta-binomial.js',
 		'derived-prngs/dirichlet.js',
+		'derived-prngs/dirichlet-multinomial.js',
+	]);
 	]);
 
 	api.export('Randomness');

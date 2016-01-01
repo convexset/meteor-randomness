@@ -5,18 +5,18 @@
 
 /* global makeRandomVariable: true */
 
-PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', function makePRNGGamma(a = 1, theta = 1, seed = null) {
+PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', function makePRNGGamma(k = 1, theta = 1, seed = null) {
 	if (seed === null) {
 		seed = defaultSeed();
 	}
 
 	var parameters = {
-		a: a,
+		k: k,
 		theta: theta
 	};
 
-	if ((typeof a !== "number") || Number.isNaN(a) ||
-		(!Number.isFinite(a)) || (a <= 0) ||
+	if ((typeof k !== "number") || Number.isNaN(k) ||
+		(!Number.isFinite(k)) || (k <= 0) ||
 		(typeof theta !== "number") || Number.isNaN(theta) ||
 		(!Number.isFinite(theta)) || (theta <= 0)) {
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
@@ -25,9 +25,9 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', funct
 	var rngU = Randomness.makePRNGUniform(seed + 14000);
 	var rngN = Randomness.makePRNGNormal(0, 1, seed + 14500);
 	return makeRandomVariable(function randomGamma() {
-		var gamma_a;
+		var gamma_k;
 
-		var d = (a < 1 ? 1 + a : a) - 1 / 3;
+		var d = (k < 1 ? 1 + k : k) - 1 / 3;
 		var c = 1.0 / Math.sqrt(9 * d);
 
 		var x, x2, u, v;
@@ -42,13 +42,13 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', funct
 			(u >= 1 - 0.0331 * x2 * x2) &&
 			(Math.log(u) >= 0.5 * x2 + d * (1 - v + Math.log(v)))
 		);
-		if (a < 1) {
-			gamma_a = d * v * Math.exp(Math.log(rngU() || VERY_SMALL_POSITIVE_NUMBER) / a);
+		if (k < 1) {
+			gamma_k = d * v * Math.exp(Math.log(rngU() || VERY_SMALL_POSITIVE_NUMBER) / k);
 		} else {
-			gamma_a = d * v;
+			gamma_k = d * v;
 		}
 
-		return theta * gamma_a;
+		return theta * gamma_k;
 	}, {
 		name: 'Gamma',
 		parameters: parameters,
@@ -56,10 +56,10 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', funct
 		isNonNegative: true,
 		isDiscrete: false,
 	}, {
-		mean: params => params.a * params.theta,
-		variance: params => params.a * params.theta * params.theta,
+		mean: params => params.k * params.theta,
+		variance: params => params.k * params.theta * params.theta,
 	}, {
 		pdf: (params, x) => params.lambda * Math.exp(-params.lambda * x),
-		mgf: (params, t) => (t < 1 / params.theta) ? Math.pow(1 - params.theta * t, -params.a) : undefined,
+		mgf: (params, t) => (t < 1 / params.theta) ? Math.pow(1 - params.theta * t, -params.k) : undefined,
 	});
 });

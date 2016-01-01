@@ -27,8 +27,8 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBernoulli', f
 		isNonNegative: false,
 		isDiscrete: true,
 	}, {
-		mean: p,
-		variance: p * (1 - p),
+		mean: params => params.p,
+		variance: params => params.p * (1 - params.p),
 		entropy: params => -params.p * Math.log(params.p) - (1 - params.p) * Math.log(1 - params.p),
 	}, {
 		pmf: (params, x) => ((x === 0) || (x === 1)) ? ((x === 0) ? 1 - params.p : params.p) : 0,
@@ -55,7 +55,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBinomial', fu
 
 	var rngU = Randomness.makePRNGUniform(seed + 10500);
 	return makeRandomVariable(function randomBinomial() {
-		return rngU() < _.range(n).map(() => rngU()).filter(u => u < p).length;
+		return _.range(n).map(() => rngU()).filter(u => u < p).length;
 	}, {
 		name: 'Binomial',
 		parameters: parameters,
@@ -63,8 +63,8 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBinomial', fu
 		isNonNegative: false,
 		isDiscrete: true,
 	}, {
-		mean: n * p,
-		variance: n * p * (1 - p),
+		mean: params => params.n * params.p,
+		variance: params => params.n * params.p * (1 - params.p),
 	}, {
 		pmf: (params, x) => ((x === Math.floor(x)) && (x >= 0) && (x <= params.n)) ? (InternalUtilities.choice(n, x) * Math.pow(params.p, x) * Math.pow(1 - params.p, params.n - x)) : 0,
 		cdf: function(params, x) {

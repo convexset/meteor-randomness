@@ -3,6 +3,7 @@
 /* global defaultSeed: true */
 
 /* global makeRandomVariable: true */
+/* global InternalUtilities: true */
 
 PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBeta', function makePRNGBeta(a = 1, b = 1, seed = null) {
 	if (seed === null) {

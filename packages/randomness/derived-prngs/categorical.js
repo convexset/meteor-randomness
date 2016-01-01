@@ -4,7 +4,7 @@
 
 /* global makeRandomVariable: true */
 
-PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', function makePRNGDiscrete(p = [0.5, 0.5], seed = null) {
+PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGCategorical', function makePRNGCategorical(p = [0.5, 0.5], seed = null) {
 	if (seed === null) {
 		seed = defaultSeed();
 	}
@@ -12,7 +12,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', fu
 	var rngU = Randomness.makePRNGUniform(seed + 11000);
 
 	// Make CDF
-	var cdf = (function() {
+	var pmf_cdf = (function() {
 		var _cdf = p.map(() => 0);
 		p.forEach(function(v, idx) {
 			if (idx === 0) {
@@ -28,10 +28,15 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', fu
 		if (maxV <= 0) {
 			throw new Meteor.Error('invalid-density-or-likelihood', 'Total weight non-positive');
 		}
-		return _cdf.map((v, idx) => ((idx === _cdf.length - 1) ? 1 : v / maxV));
+		return {
+			pmf: p.map(_p => _p / maxV),
+			cdf: _cdf.map((v, idx) => ((idx === _cdf.length - 1) ? 1 : v / maxV))
+		};
 	})();
+	var pmf = pmf_cdf.pmf;
+	var cdf = pmf_cdf.cdf;
 
-	return makeRandomVariable(function randomDiscrete() {
+	return makeRandomVariable(function randomCategorical() {
 		var u = rngU();
 		for (var k = 0; k < cdf.length; k++) {
 			if (u <= cdf[k]) {
@@ -39,12 +44,18 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', fu
 			}
 		}
 	}, {
-		name: 'Discrete',
+		name: 'Categorical',
 		parameters: {
-			cdf: cdf
+			p: pmf
 		},
 		isNumeric: false,
 		isNonNegative: false,
 		isDiscrete: true,
-	}, {}, {});
+	}, {
+		mean: params => params.p.map(x => x),
+		variance: params => params.p.map(x => x * (1 - x)),
+	}, {
+		covariance: (params, i, j) => ((i === j) ? (params.p[i] * (1 - params.p[i])) : (-params.p[i] * params.p[j])),
+		pmf: (params, i) => params.p[i],
+	});
 });
