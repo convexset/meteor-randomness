@@ -21,7 +21,6 @@ Package.onUse(function(api) {
 
 	api.addFiles([
 		'base-prngs/alea-prng.js',
-		'base-prngs/nonsense-prng.js'
 	]);
 	api.addFiles([
 		'randomness.js',

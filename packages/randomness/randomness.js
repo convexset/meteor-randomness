@@ -5,12 +5,10 @@
 /* global VERY_SMALL_POSITIVE_NUMBER: true */
 
 /* global AleaPRNG: true */
-/* global NonsensePRNG: true */
 
 Randomness = {};
 
 PackageUtilities.addImmutablePropertyFunction(Randomness, '__AleaPRNG', AleaPRNG);
-PackageUtilities.addImmutablePropertyFunction(Randomness, '__NonsensePRNG', NonsensePRNG);
 
 defaultSeed = function defaultSeed() {
 	return (new Date()).getTime();

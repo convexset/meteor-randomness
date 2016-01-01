@@ -2,14 +2,14 @@
 /* global makeRandomVariable: true */
 
 var StatisticalFunctions = {
-	markovTailBound: function(params, a) {
+	markovTailBound: function markovTailBound(params, a) {
 		if (this.isNumeric && this.isNonNegative && !this.isMultivariate) {
 			return this.mean / a;
 		} else {
 			return null;
 		}
 	},
-	chebyshevUpperTailBound: function(params, x) {
+	chebyshevUpperTailBound: function chebyshevUpperTailBound(params, x) {
 		if (this.isNumeric && !this.isMultivariate) {
 			var z = (x - this.mean) / Math.sqrt(this.variance);
 			return Math.min(1, (z <= 0) ? Infinity : Math.pow(z, -2));
@@ -17,7 +17,7 @@ var StatisticalFunctions = {
 			return null;
 		}
 	},
-	chebyshevLowerTailBound: function(params, x) {
+	chebyshevLowerTailBound: function chebyshevLowerTailBound(params, x) {
 		if (this.isNumeric && !this.isMultivariate) {
 			var z = (this.mean - x) / Math.sqrt(this.variance);
 			return Math.min(1, (z <= 0) ? Infinity : Math.pow(z, -2));
@@ -25,7 +25,7 @@ var StatisticalFunctions = {
 			return null;
 		}
 	},
-	chernoffUpperTailBound: function(params, x, t) {
+	chernoffUpperTailBound: function chernoffUpperTailBound(params, x, t) {
 		if (this.isNumeric && !this.isMultivariate) {
 			if (t < 0) {
 				throw new Meteor.Error('invalid-argument', 't must be non-negative. Selected: ' + t);
@@ -36,7 +36,7 @@ var StatisticalFunctions = {
 			return null;
 		}
 	},
-	chernoffLowerTailBound: function(params, x, t) {
+	chernoffLowerTailBound: function chernoffLowerTailBound(params, x, t) {
 		if (this.isNumeric && !this.isMultivariate) {
 			if (t > 0) {
 				throw new Meteor.Error('invalid-argument', 't must be non-positive. Selected: ' + t);
@@ -47,7 +47,7 @@ var StatisticalFunctions = {
 			return null;
 		}
 	},
-	chernoffUpperTailBound_ApproxMin(params, x, t0, t1, options) {
+	chernoffUpperTailBound_ApproxMin: function chernoffUpperTailBound_ApproxMin(params, x, t0, t1, options) {
 		options = _.extend({
 			numSamples: 1000,
 			excludeLeftEndpoint: false,
@@ -63,7 +63,7 @@ var StatisticalFunctions = {
 			t0, t1, options
 		)[1];
 	},
-	chernoffLowerTailBound_ApproxMin(params, x, t0, t1, options) {
+	chernoffLowerTailBound_ApproxMin: function chernoffLowerTailBound_ApproxMin(params, x, t0, t1, options) {
 		options = _.extend({
 			numSamples: 1000,
 			excludeLeftEndpoint: false,
