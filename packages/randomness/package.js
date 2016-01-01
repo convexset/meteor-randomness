@@ -25,7 +25,8 @@ Package.onUse(function(api) {
 	api.addFiles([
 		'randomness.js',
 		'make-random-variable.js',
-		'special-functions.js'
+		'special-functions.js',
+		'internal-utilities.js',
 	]);
 	api.addFiles([
 		'derived-prngs/uniform.js',

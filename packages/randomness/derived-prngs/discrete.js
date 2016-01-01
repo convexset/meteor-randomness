@@ -4,32 +4,6 @@
 
 /* global makeRandomVariable: true */
 
-PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBernoulli', function makePRNGBernoulli(p = 0.5, seed = null) {
-	if (seed === null) {
-		seed = defaultSeed();
-	}
-	if ((p < 0) || (p > 1)) {
-		throw new Meteor.Error('invalid-probability', 'p = ' + p + ' not in [0, 1]');
-	}
-
-	var parameters = {
-		p: p
-	};
-
-	var rngU = Randomness.makePRNGUniform(seed + 10000);
-	return makeRandomVariable(function randomBernoulli() {
-		return rngU() < p;
-	}, {
-		name: 'Bernoulli',
-		parameters: parameters,
-		isNumeric: false,
-		isNonNegative: false,
-		isDiscrete: true,
-	}, {
-		entropy: params => -params.p * Math.log(params.p) - (1 - params.p) * Math.log(1 - params.p),
-	}, {});
-});
-
 PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', function makePRNGDiscrete(p = [0.5, 0.5], seed = null) {
 	if (seed === null) {
 		seed = defaultSeed();

@@ -5,21 +5,7 @@
 /* global makeRandomVariable: true */
 /* global VERY_SMALL_POSITIVE_NUMBER: true */
 
-// function factorial(n) {
-// 	var result = 1;
-// 	for (var k = 1; k <= n; k++) {
-// 		result *= k;
-// 	}
-// 	return result;
-// }
-
-function factorialRatio(n, denominator) {
-	var result = 1;
-	for (var k = 1; k <= n; k++) {
-		result *= (k / denominator);
-	}
-	return result;
-}
+/* global InternalUtilities: global */
 
 PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGPoisson', function makePRNGPoisson(lambda = 1, seed = null) {
 	if (seed === null) {
@@ -55,7 +41,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGPoisson', fun
 		mean: params => params.lambda,
 		variance: params => params.lambda,
 	}, {
-		pmf: (params, x) => ((x === Math.floor(x)) && (x >= 0)) ? (Math.exp(-params.lambda) / factorialRatio(0, params.lambda)) : 0,
+		pmf: (params, x) => ((x === Math.floor(x)) && (x >= 0)) ? (Math.exp(-params.lambda) / InternalUtilities.factorialRatio(0, params.lambda)) : 0,
 		cdf: function(params, x) {
 			if (x < 0) {
 				return 0;

@@ -16,6 +16,8 @@ Provides tools for generating random variates (uniform, normal, exponential, Poi
 - [Additional Interfaces](#additional-interfaces)
 - [Special Functions](#special-functions)
 - [Notes](#notes)
+  - [Random Variable Generation](#random-variable-generation)
+  - [To Dos](#to-dos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -33,7 +35,8 @@ Unless otherwise stated, the "make" functions below create a function that can b
  - Uniform on [`a`, `b`]: `Randomness.makePRNGUniform_Range(a = 0, b = 1, seed = null)`
  - Discrete Uniform on [`a`, `b`]: `Randomness.makePRNGUniform_Range_Integer_IncludeRightEndPoint(a = 0, b = 1, seed = null)`
  - Discrete Uniform on [`a`, `b`): `Randomness.makePRNGUniform_Range_Integer_ExcludeRightEndPoint(a = 0, b = 1, seed = null)`
- - Bernoulli (returns `true` or `false`): `Randomness.makePRNGBernoulli(p = 0.5, seed = null)` (where `p` is the probability of getting a `true` outcome)
+ - Bernoulli (returns `1` or `0`): `Randomness.makePRNGBernoulli(p = 0.5, seed = null)` (where `p` is the probability of getting a `1` outcome)
+ - Binomial: `Randomness.makePRNGBinomial(p = 0.5, n = 1, seed = null)`
  - Discrete: `Randomness.makePRNGDiscrete(p = [0.5, 0.5], seed = null)`
  - Exponential: `Randomness.makePRNGExponential(lambda = 1, seed = null)`
  - Poisson: `Randomness.makePRNGPoisson(lambda = 1, seed = null)`
