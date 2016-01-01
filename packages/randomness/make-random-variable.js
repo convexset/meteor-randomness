@@ -1,5 +1,6 @@
 /* global PackageUtilities: true */
 /* global makeRandomVariable: true */
+/* global InternalUtilities: true */
 
 var StatisticalFunctions = {
 	markovTailBound: function markovTailBound(params, a) {
@@ -58,7 +59,7 @@ var StatisticalFunctions = {
 		if (t0 < 0) {
 			throw new Meteor.Error('invalid-argument', 't0 must be non-negative. Selected: ' + t0);
 		}
-		return Utilities.__approxMinimization_IntervalEnumeration(
+		return InternalUtilities.approxMinimization_IntervalEnumeration(
 			t => self.chernoffUpperTailBound(x, t),
 			t0, t1, options
 		)[1];
@@ -74,38 +75,10 @@ var StatisticalFunctions = {
 		if (t1 > 0) {
 			throw new Meteor.Error('invalid-argument', 't1 must be non-positive. Selected: ' + t1);
 		}
-		return Utilities.__approxMinimization_IntervalEnumeration(
+		return InternalUtilities.approxMinimization_IntervalEnumeration(
 			t => self.chernoffLowerTailBound(x, t),
 			t0, t1, options
 		)[1];
-	},
-};
-
-var Utilities = {
-	__approxMinimization_IntervalEnumeration: function(fn, t0, t1, options) {
-		options = _.extend({
-			numSamples: 1000,
-			excludeLeftEndpoint: false,
-			excludeRightEndpoint: false,
-		}, options);
-		if (options.numSamples <= 1) {
-			throw new Meteor.Error('invalid-argument', 'Choose at least 2 samples. Selected: ' + options.numSamples);
-		}
-		if (t0 > t1) {
-			throw new Meteor.Error('invalid-argument', 'Invalid interval [t0, t1]. Selected: [' + t0 + ', ' + t1 + ']');
-		}
-		var _numSamples = options.numSamples + (options.excludeLeftEndpoint ? 1 : 0) + (options.excludeRightEndpoint ? 1 : 0);
-		var T = _.range(_numSamples).map(idx => t0 + (idx / (_numSamples - 1)) * (t1 - t0));
-		if (options.excludeLeftEndpoint) {
-			T.shift();
-		}
-		if (options.excludeRightEndpoint) {
-			T.pop();
-		}
-		var sol = T
-			.map(t => [t, fn(t)])
-			.sort((x, y) => (x[1] - y[1]))[0];
-		return sol;
 	},
 };
 

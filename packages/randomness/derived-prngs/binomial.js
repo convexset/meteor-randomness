@@ -77,3 +77,17 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBinomial', fu
 		mgf: (params, t) => Math.pow(1 + params.p * (Math.exp(t) - 1), params.n),
 	});
 });
+
+/*
+
+// test snippet
+
+bin = Randomness.makePRNGBinomial(0.5, 20);
+_.range(20+1).forEach(function(k) {
+  console.log(k, bin.pmf(k), bin.cdf(k), 1-bin.cdf(k))
+});
+
+console.log('chernoffUpperTailBound_ApproxMin(15)', bin.chernoffUpperTailBound_ApproxMin(15, 0, 2));
+console.log('chernoffUpperTailBound_ApproxMin(15)', bin.chernoffUpperTailBound_ApproxMin(15, 0, 10));
+
+*/

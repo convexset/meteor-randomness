@@ -30,6 +30,7 @@ Package.onUse(function(api) {
 	]);
 	api.addFiles([
 		'derived-prngs/uniform.js',
+		'derived-prngs/binomial.js',
 		'derived-prngs/discrete.js',
 		'derived-prngs/etc.js',
 		'derived-prngs/exponential.js',
