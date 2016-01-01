@@ -26,6 +26,7 @@ Package.onUse(function(api) {
 		'randomness.js',
 		'make-random-variable.js',
 		'special-functions.js',
+		'bayesian-conjugate-pairs.js',
 		'internal-utilities.js',
 	]);
 	api.addFiles([
@@ -43,6 +44,10 @@ Package.onUse(function(api) {
 		'derived-prngs/dirichlet.js',
 		'derived-prngs/dirichlet-multinomial.js',
 	]);
+	api.addFiles([
+		'bayesian-conjugates/binomial.js',
+		'bayesian-conjugates/multinomial.js',
+		'bayesian-conjugates/poisson.js',
 	]);
 
 	api.export('Randomness');
