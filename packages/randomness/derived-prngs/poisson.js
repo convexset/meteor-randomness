@@ -3,7 +3,7 @@
 /* global defaultSeed: true */
 
 /* global makeRandomVariable: true */
-
+/* global VERY_SMALL_POSITIVE_NUMBER: true */
 
 // function factorial(n) {
 // 	var result = 1;
@@ -35,7 +35,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGPoisson', fun
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
 	}
 
-	var rngU = Randomness.makePRNGUniform(seed + 90000 + 2000);
+	var rngU = Randomness.makePRNGUniform(seed + 12500);
 	return makeRandomVariable(function randomPoisson() {
 		// numerically stable version of the classic method
 		var k = -1;

@@ -16,7 +16,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBernoulli', f
 		p: p
 	};
 
-	var rngU = Randomness.makePRNGUniform(seed + 90000 + 5500);
+	var rngU = Randomness.makePRNGUniform(seed + 10000);
 	return makeRandomVariable(function randomBernoulli() {
 		return rngU() < p;
 	}, {
@@ -35,7 +35,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDiscrete', fu
 		seed = defaultSeed();
 	}
 
-	var rngU = Randomness.makePRNGUniform(seed + 90000 + 5000);
+	var rngU = Randomness.makePRNGUniform(seed + 11000);
 
 	// Make CDF
 	var cdf = (function() {

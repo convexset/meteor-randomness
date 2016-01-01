@@ -22,8 +22,8 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', funct
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
 	}
 
-	var rngU = Randomness.makePRNGUniform(seed + 90000 + 3000);
-	var rngN = Randomness.makePRNGNormal(0, 1, seed + 90000 + 3500);
+	var rngU = Randomness.makePRNGUniform(seed + 14000);
+	var rngN = Randomness.makePRNGNormal(0, 1, seed + 14500);
 	return makeRandomVariable(function randomGamma() {
 		var gamma_a;
 

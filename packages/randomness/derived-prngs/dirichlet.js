@@ -19,7 +19,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDirichlet', f
 	};
 	var a_0 = alpha.reduce((x, y) => x + y);
 
-	var rngGs = alpha.map((a, idx) => Randomness.makePRNGGamma(a, 1, seed + 90000 + 4100 + idx * 7));
+	var rngGs = alpha.map((a, idx) => Randomness.makePRNGGamma(a, 1, seed + 16000 + idx * 7));
 	return makeRandomVariable(function randomDirichlet() {
 		var likelihood = rngGs.map(rng => rng());
 		var likelihood_total = likelihood.reduce((x, y) => x + y);

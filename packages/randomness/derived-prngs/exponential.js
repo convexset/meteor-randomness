@@ -19,7 +19,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGExponential',
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
 	}
 
-	var rngU = Randomness.makePRNGUniform(seed + 90000 + 1000);
+	var rngU = Randomness.makePRNGUniform(seed + 12000);
 	return makeRandomVariable(function randomExponential() {
 		var x = rngU() || VERY_SMALL_POSITIVE_NUMBER; // can't be exactly 0
 		return -(1 / lambda) * Math.log(x);

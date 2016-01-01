@@ -4,17 +4,6 @@
 
 /* global makeRandomVariable: true */
 
-var USE_NONSENSE_UNIFORM_PRNG = false;
-PackageUtilities.addImmutablePropertyFunction(Randomness, '__useNonsensePRNG', function __useNonsensePRNG() {
-	USE_NONSENSE_UNIFORM_PRNG = true;
-});
-PackageUtilities.addImmutablePropertyFunction(Randomness, '__useAleaPRNG', function __useAleaPRNG() {
-	USE_NONSENSE_UNIFORM_PRNG = false;
-});
-PackageUtilities.addImmutablePropertyFunction(Randomness, '__selectedUniformPRNG', function __selectedUniformPRNG() {
-	return USE_NONSENSE_UNIFORM_PRNG ? "Nonsense" : "Alea";
-});
-
 PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform', function makePRNGUniform(seed = null) {
 	if (seed === null) {
 		seed = defaultSeed();
@@ -26,7 +15,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform', fun
 		seed = Number(seed);
 	}
 
-	return makeRandomVariable(USE_NONSENSE_UNIFORM_PRNG ? Randomness.__NonsensePRNG(seed) : Randomness.__AleaPRNG(seed), {
+	return makeRandomVariable(Randomness.__AleaPRNG(seed), {
 		distribution: 'Uniform',
 		parameters: {
 			a: 0,
@@ -61,7 +50,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform_Range
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
 	}
 
-	var rng = Randomness.makePRNGUniform(seed + 10000);
+	var rng = Randomness.makePRNGUniform(seed + 1000);
 	return makeRandomVariable(function rng_range() {
 		return a + rng() * (b - a);
 	}, {
@@ -98,7 +87,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform_Range
 		throw new Meteor.Error('invalid-parameters', EJSON.stringify(parameters));
 	}
 
-	var rng = Randomness.makePRNGUniform_Range(a, b + 1, seed + 20000);
+	var rng = Randomness.makePRNGUniform_Range(a, b + 1, seed + 2000);
 	return makeRandomVariable(function rng_range_includeRightLimit() {
 		return Math.floor(rng());
 	}, {
@@ -133,5 +122,5 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform_Range
 		});
 	}
 
-	return Randomness.makePRNGUniform_Range_Integer_IncludeRightEndPoint(a, b - 1, seed + 10000);
+	return Randomness.makePRNGUniform_Range_Integer_IncludeRightEndPoint(a, b - 1, seed + 1000);
 });
