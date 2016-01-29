@@ -84,7 +84,7 @@ var StatisticalFunctions = {
 
 makeRandomVariable = function makeRandomVariable(generator, info, metrics = {}, funcs = {}) {
 	info = _.extend({
-		name: null,
+		description: null,
 		parameters: {},
 		isNumeric: true,
 		isNonNegative: false,

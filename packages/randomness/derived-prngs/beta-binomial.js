@@ -31,7 +31,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBetaBinomial'
 		var p = rngB();
 		return _.range(n).map(() => rngU()).filter(u => u < p).length;
 	}, {
-		name: 'Beta Binomial',
+		description: 'Beta Binomial',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: false,

@@ -41,7 +41,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGNormal', func
 			return __spare;
 		}
 	}, {
-		name: 'Normal',
+		description: 'Normal',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: false,

@@ -25,7 +25,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDirichlet', f
 		var likelihood_total = likelihood.reduce((x, y) => x + y);
 		return likelihood.map(li => li / likelihood_total);
 	}, {
-		name: 'Dirichlet',
+		description: 'Dirichlet',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: true,

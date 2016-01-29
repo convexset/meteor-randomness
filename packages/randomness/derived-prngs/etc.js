@@ -50,7 +50,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePseudoRandomAlpha
 	return makeRandomVariable(function randomAlphaNumericString(length = 0) {
 		return _.range(length).map(() => rng()).join('');
 	}, {
-		name: '(n) => Random Alphanumeric String of Length n',
+		description: '(n) => Random Alphanumeric String of Length n',
 		parameters: {},
 		isNumeric: false,
 		isNonNegative: false,
@@ -69,7 +69,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePseudoRandomVerbA
 	return makeRandomVariable(function randomVerbAdjNoun() {
 		return rngV() + rngA() + rngN();
 	}, {
-		name: 'Random Verb-Adjective-Noun',
+		description: 'Random Verb-Adjective-Noun',
 		parameters: {},
 		isNumeric: false,
 		isNonNegative: false,
@@ -87,7 +87,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePseudoRandomVerbN
 	return makeRandomVariable(function randomVerbNoun() {
 		return rngV() + rngN();
 	}, {
-		name: 'Random Verb-Noun',
+		description: 'Random Verb-Noun',
 		parameters: {},
 		isNumeric: false,
 		isNonNegative: false,
@@ -105,7 +105,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePseudoRandomAdjNo
 	return makeRandomVariable(function randomAdjNoun() {
 		return rngA() + rngN();
 	}, {
-		name: 'Random Adjective-Noun',
+		description: 'Random Adjective-Noun',
 		parameters: {},
 		isNumeric: false,
 		isNonNegative: false,

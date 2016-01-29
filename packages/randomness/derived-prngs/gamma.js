@@ -50,7 +50,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGGamma', funct
 
 		return theta * gamma_k;
 	}, {
-		name: 'Gamma',
+		description: 'Gamma',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: true,

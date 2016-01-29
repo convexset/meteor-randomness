@@ -21,7 +21,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBernoulli', f
 	return makeRandomVariable(function randomBernoulli() {
 		return rngU() < p ? 1 : 0;
 	}, {
-		name: 'Bernoulli',
+		description: 'Bernoulli',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: false,
@@ -57,7 +57,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBinomial', fu
 	return makeRandomVariable(function randomBinomial() {
 		return _.range(n).map(() => rngU()).filter(u => u < p).length;
 	}, {
-		name: 'Binomial',
+		description: 'Binomial',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: false,

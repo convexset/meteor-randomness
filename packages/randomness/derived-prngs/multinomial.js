@@ -34,7 +34,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGMultinomial',
 		});
 		return outcome;
 	}, {
-		name: 'Multinomial',
+		description: 'Multinomial',
 		parameters: {
 			n: n,
 			p: pmf

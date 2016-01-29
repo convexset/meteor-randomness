@@ -24,7 +24,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGExponential',
 		var x = rngU() || VERY_SMALL_POSITIVE_NUMBER; // can't be exactly 0
 		return -(1 / lambda) * Math.log(x);
 	}, {
-		name: 'Exponential',
+		description: 'Exponential',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: false,

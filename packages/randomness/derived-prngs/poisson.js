@@ -32,7 +32,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGPoisson', fun
 		} while (p < lambda);
 		return k;
 	}, {
-		name: 'Poisson',
+		description: 'Poisson',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: true,

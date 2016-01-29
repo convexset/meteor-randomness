@@ -44,7 +44,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGCategorical',
 			}
 		}
 	}, {
-		name: 'Categorical',
+		description: 'Categorical',
 		parameters: {
 			p: pmf
 		},

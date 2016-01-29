@@ -54,7 +54,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform_Range
 	return makeRandomVariable(function rng_range() {
 		return a + rng() * (b - a);
 	}, {
-		name: 'Uniform',
+		description: 'Uniform',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: a >= 0,
@@ -91,7 +91,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGUniform_Range
 	return makeRandomVariable(function rng_range_includeRightLimit() {
 		return Math.floor(rng());
 	}, {
-		name: 'Discrete Uniform',
+		description: 'Discrete Uniform',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: a >= 0,

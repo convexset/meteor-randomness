@@ -43,7 +43,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGDirichletMult
 		});
 		return outcome;
 	}, {
-		name: 'Dirichlet Multinomial',
+		description: 'Dirichlet Multinomial',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: true,

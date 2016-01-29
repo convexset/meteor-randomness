@@ -44,8 +44,9 @@ BayesianConjugates.inferBinomial = function inferBinomial(
 var rngB = Randomness.makePRNGBernoulli(0.95);
 var samples = _.range(500).map(() => rngB());
 var infered = Randomness.BayesianConjugates.inferBinomial(1, samples);
-console.log('Parameters:', infered.posteriorParameters);
-console.log('Mean, Variance:', infered.parameterSampler.mean, infered.parameterSampler.variance);
+console.log('Posterior Parameters:', infered.posteriorParameters);
+console.log('Posterior Mean:', infered.parameterSampler.mean);
+console.log('Posterior Variance:', infered.parameterSampler.variance);
 console.log('Coefficient of Variation:', Math.sqrt(infered.parameterSampler.variance) / infered.parameterSampler.mean);
 
 */

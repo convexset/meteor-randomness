@@ -52,7 +52,7 @@ BayesianConjugates.inferMultinomial = function inferMultinomial(
 			x.forEach(function(x_k) {
 				if ((typeof x_k !== "number") || Number.isNaN(x_k) ||
 					(!Number.isFinite(x_k)) || (x_k !== Math.floor(x_k)) ||
-					(x_k < 0) || (x_k >= n)) {
+					(x_k < 0) || (x_k > n)) {
 					sampleInvalid = true;
 				}
 			});
@@ -80,7 +80,8 @@ BayesianConjugates.inferMultinomial = function inferMultinomial(
 var rngM = Randomness.makePRNGMultinomial(15, [0.05,0.3,0.6,0.05]);
 var samples = _.range(500).map(() => rngM());
 var infered = Randomness.BayesianConjugates.inferMultinomial(4, 15, samples, null);
-console.log('Parameters:', infered.posteriorParameters);
-console.log('Mean, Variance:', infered.parameterSampler.mean, infered.parameterSampler.variance);
+console.log('Posterior Parameters:', infered.posteriorParameters);
+console.log('Posterior Mean:', infered.parameterSampler.mean);
+console.log('Posterior Variance:', infered.parameterSampler.variance);
 
 */

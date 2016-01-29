@@ -29,7 +29,7 @@ PackageUtilities.addImmutablePropertyFunction(Randomness, 'makePRNGBeta', functi
 		var y = rngGb();
 		return x / (x + y);
 	}, {
-		name: 'Beta',
+		description: 'Beta',
 		parameters: parameters,
 		isNumeric: true,
 		isNonNegative: true,
