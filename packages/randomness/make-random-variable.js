@@ -109,6 +109,16 @@ makeRandomVariable = function makeRandomVariable(generator, info, metrics = {}, 
 	}, funcs);
 
 	var myRV = generator;
+	PackageUtilities.addImmutablePropertyFunction(myRV, Symbol.iterator, function unlimitedStreamOfRandomSamples() {
+		return {
+			next: function nextRandomSampleInAnUnlimitedStream() {
+				return {
+					value: generator(),
+					done: false
+				};
+			}
+		};
+	});
 
 	_.forEach(info, function(v, name) {
 		if (typeof v === "object") {
