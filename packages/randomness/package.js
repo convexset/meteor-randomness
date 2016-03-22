@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'convexset:randomness',
-	version: '0.0.1',
+	version: '0.0.2',
 	summary: 'Tools for doing stochastic modelling and statistics (with seedable PRNGs)',
 	git: 'https://github.com/convexset/meteor-randomness',
 	documentation: '../../README.md'
