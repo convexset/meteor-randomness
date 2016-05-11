@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'convexset:randomness',
-	version: '0.0.2',
+	version: '0.0.2_1',
 	summary: 'Tools for doing stochastic modelling and statistics (with seedable PRNGs)',
 	git: 'https://github.com/convexset/meteor-randomness',
 	documentation: '../../README.md'
@@ -13,7 +13,7 @@ Package.onUse(function(api) {
 	api.use(
 		[
 			'ecmascript', 'underscore', 'check', 'ejson',
-			'convexset:package-utils@0.1.9',
+			'convexset:package-utils@0.1.14',
 		]
 	);
 	api.use([], 'server');
