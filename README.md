@@ -26,6 +26,26 @@ Provides tools for generating random variates (uniform, normal, exponential, Poi
 
 This is available as [`convexset:randomness`](https://atmospherejs.com/convexset/randomness) on [Atmosphere](https://atmospherejs.com/). (Install with `meteor add convexset:randomness`.)
 
+If you get an error message like:
+```
+WARNING: npm peer requirements not installed:
+ - package-utils@^0.2.1 not installed.
+          
+Read more about installing npm peer dependencies:
+  http://guide.meteor.com/using-packages.html#peer-npm-dependencies
+```
+It is because, by design, the package does not include instances of these from `npm` to avoid repetition. (In this case, `meteor npm install --save package-utils`.)
+
+See [this](http://guide.meteor.com/using-packages.html#peer-npm-dependencies) or [this](https://atmospherejs.com/tmeasday/check-npm-versions) for more information.
+
+Now, if you see a message like
+```
+WARNING: npm peer requirements not installed:
+underscore@1.5.2 installed, underscore@^1.8.3 needed
+```
+it is because you or something you are using is using Meteor's cruddy old `underscore` package. Install a new version from `npm`. (And, of course, you may use the `npm` version in a given scope via `require("underscore")`.)
+
+
 ## Random Variates
 
 Unless otherwise stated, the "make" functions below create a function that can be called with no arguments to generate a random sample from the desired distribution.
